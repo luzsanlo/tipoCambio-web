@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <br>
+  <span>
+      <p-dropdown [options]="items"
+                  optionLabel="nombre"
+                  optionValue="id"
+                  placeholder="Seleccione moneda origen"
+                  formControlName="fcOrigin"
+                  id="monedaOrigen">
+      </p-dropdown>
+  </span>
+
+  <br><br>
+  <span>
+      <p-dropdown [options]="items"
+                  optionLabel="nombre"
+                  optionValue="id"
+                  placeholder="Seleccione moneda destino"
+                  formControlName="fcDestiny"
+                  id="monedaDestino">
+      </p-dropdown>
+  </span>
+
+  <br><br>
+
+  <span class="p-float-label">
+      <p-inputNumber id="factor"
+                     mode="decimal"
+                     formControlName="fcFactor"
+                     [maxFractionDigits]="2">
+      </p-inputNumber>
+      <label for="factor">Factor</label>
+  </span>
+
+  <br><br>
+
+  <p-button label="Guardar" icon="pi pi-save" class="p-md-6 p-sm-12"
+            type="submit" [disabled]="!form.valid"></p-button>
+
+</form>

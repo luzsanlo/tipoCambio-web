@@ -1,0 +1,110 @@
+<!-- Realiza operacion -->
+<p-panel header="Operacion Tipo de Cambio">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <br>
+    <span>
+      <p-dropdown [options]="items"
+                  optionLabel="nombre"
+                  optionValue="id"
+                  placeholder="Seleccione moneda origen"
+                  formControlName="fcOrigin"
+                  id="monedaOrigen">
+      </p-dropdown>
+  </span>
+
+    <br><br>
+    <span>
+      <p-dropdown [options]="items"
+                  optionLabel="nombre"
+                  optionValue="id"
+                  placeholder="Seleccione moneda destino"
+                  formControlName="fcDestiny"
+                  id="monedaDestino">
+      </p-dropdown>
+  </span>
+
+    <br><br><br>
+
+    <span class="p-float-label">
+      <p-inputNumber id="cantidad"
+                     mode="decimal"
+                     formControlName="fcCantidad"
+                     [maxFractionDigits]="2">
+      </p-inputNumber>
+      <label for="cantidad">Cantidad</label>
+  </span>
+
+    <br><br>
+
+    <p-button label="Guardar" icon="pi pi-save" class="p-md-6 p-sm-12"
+              type="submit" [disabled]="!form.valid"></p-button>
+  </form>
+
+  <h2>{{response}}</h2>
+</p-panel>
+
+<br><br><br>
+
+<!-- Listado de Monedas -->
+
+<p-button icon="pi pi-plus"
+          label="Agregar Moneda"
+          (click)="openCreateDialog()">
+</p-button>
+
+<br><br>
+
+<p-table [value]="items">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Codigo</th>
+      <th>Fecha Creacion</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.nombre}}</td>
+      <td>{{item.codigo}}</td>
+      <td>{{item.fechaCreacion | date:'dd-MM-yyyy'}} </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+<br><br><br><br>
+
+
+<!-- Listado de Tipos de Cambio -->
+
+<p-button icon="pi pi-plus"
+          label="Agregar Tipo de Cambio"
+          (click)="openCreateTipoCambioDialog()">
+</p-button>
+
+<br><br>
+
+<p-table [value]="tiposCambio">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Moneda Origen</th>
+      <th>Moneda Destino</th>
+      <th>Factor</th>
+      <th>Fecha Creacion</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td>{{item.id}}</td>
+      <td>{{item.monedaOrigen.nombre}}</td>
+      <td>{{item.monedaDestino.nombre}}</td>
+      <td>{{item.factor}}</td>
+      <td>{{item.fechaCreacion | date:'dd-MM-yyyy'}} </td>
+    </tr>
+  </ng-template>
+</p-table>

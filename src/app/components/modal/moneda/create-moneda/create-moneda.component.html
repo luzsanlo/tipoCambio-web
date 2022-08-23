@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <br>
+  <span class="p-float-label">
+      <input id="nombre"
+             type="text"
+             formControlName="fcName"
+             maxlength="20"
+             required
+             pInputText>
+      <label for="nombre">Nombre</label>
+    </span>
+
+  <br><br>
+  <span class="p-float-label">
+      <input id="codigo"
+             type="text"
+             formControlName="fcCode"
+             maxlength="10"
+             required
+             pInputText>
+      <label for="codigo">Codigo</label>
+  </span>
+
+  <br><br>
+
+  <p-button label="Guardar" icon="pi pi-save" class="p-md-6 p-sm-12"
+              type="submit" [disabled]="!form.valid"></p-button>
+
+</form>
